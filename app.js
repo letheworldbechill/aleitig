@@ -70,25 +70,34 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function activateStep(stepId) {
-    // Abschnitt sichtbar machen
-    stepSections.forEach((section) => {
-      if (section.id === stepId) {
-        section.classList.add("step-active");
-      } else {
-        section.classList.remove("step-active");
-      }
-    });
+  // Abschnitt sichtbar machen
+  stepSections.forEach((section) => {
+    if (section.id === stepId) {
+      section.classList.add("step-active");
+    } else {
+      section.classList.remove("step-active");
+    }
+  });
 
-    // Nav-Button aktiv setzen
-    navButtons.forEach((btn) => {
-      if (btn.getAttribute("data-target") === stepId) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
+  // Nav-Button aktiv setzen
+  navButtons.forEach((btn) => {
+    if (btn.getAttribute("data-target") === stepId) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
 
-    // nach oben scrollen (optional)
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-});
+  // -------------------------------------
+  // NEU: Dynamischen Titel aktualisieren
+  // -------------------------------------
+  const title = document.getElementById("current-step-title");
+
+  if (stepId === "step-1") title.textContent = "Schritt eins";
+  if (stepId === "step-2") title.textContent = "Schritt zwei";
+  if (stepId === "step-3") title.textContent = "Schritt drei";
+
+  // nach oben scrollen
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
