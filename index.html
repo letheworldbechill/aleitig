@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schritte App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <h1>Schritt eins&nbsp;&nbsp;&nbsp;Schritt zwei&nbsp;&nbsp;&nbsp;Schritt drei</h1>
+    </header>
+
+    <!-- Navigation zwischen den drei Seiten/Schritten -->
+    <nav class="step-navigation">
+      <button class="step-nav-button active" data-target="step-1">Schritt eins</button>
+      <button class="step-nav-button" data-target="step-2">Schritt zwei</button>
+      <button class="step-nav-button" data-target="step-3">Schritt drei</button>
+    </nav>
+
+    <main>
+      <!-- Schritt 1 -->
+      <section id="step-1" class="step step-active" data-step="1">
+        <div class="info-list">
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info 1 – Kurz</span>
+              <span class="info-content">
+                Hier steht die ausführliche Information für Info 1. Dieser Text wird angezeigt,
+                wenn der Button geöffnet ist.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info 2 – Kurz</span>
+              <span class="info-content">
+                Ausführliche Beschreibung für Info 2. Du kannst hier deinen eigenen Text eintragen.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info 3 – Kurz</span>
+              <span class="info-content">
+                Noch ein Beispieltext für Info 3. Der Button klappt auf und wieder zu beim Tippen.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+        </div>
+
+        <button class="next-step-btn" data-next-step="step-2">
+          Nächster Schritt
+        </button>
+      </section>
+
+      <!-- Schritt 2 -->
+      <section id="step-2" class="step" data-step="2">
+        <div class="info-list">
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info A – Kurz</span>
+              <span class="info-content">
+                Langer Text für Info A im zweiten Schritt. Passe ihn an deine Inhalte an.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info B – Kurz</span>
+              <span class="info-content">
+                Ausführliche Beschreibung für Info B im zweiten Schritt.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info C – Kurz</span>
+              <span class="info-content">
+                Noch ein Detailtext für Info C. Alles frei anpassbar.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+        </div>
+
+        <button class="next-step-btn" data-next-step="step-3">
+          Nächster Schritt
+        </button>
+      </section>
+
+      <!-- Schritt 3 -->
+      <section id="step-3" class="step" data-step="3">
+        <div class="info-list">
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info X – Kurz</span>
+              <span class="info-content">
+                Langer Text für Info X im dritten Schritt.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info Y – Kurz</span>
+              <span class="info-content">
+                Erläuterung für Info Y im dritten Schritt.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+          <div class="info-item">
+            <button class="info-button">
+              <span class="info-title">Info Z – Kurz</span>
+              <span class="info-content">
+                Noch eine ausführliche Information für Info Z.
+              </span>
+            </button>
+            <label class="confirm-checkbox">
+              <input type="checkbox" />
+              <span class="checkbox-visual"></span>
+            </label>
+          </div>
+
+        </div>
+
+        <button class="next-step-btn" data-next-step="done">
+          Nächster Schritt
+        </button>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
