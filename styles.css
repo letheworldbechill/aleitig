@@ -1,0 +1,258 @@
+:root {
+  --bg: #e0e0e0;           /* grauer Hintergrund */
+  --text: #ffffff;         /* allgemeiner Text/Buttons weiß */
+  --text-dark: #000000;    /* Text in Buttons schwarz */
+  --hero: #002b6f;         /* dunkelblau für Überschrift */
+  --black: #000000;        /* schwarz für "Nächster Schritt"-Button */
+  --spacing-1: 4px;        /* 4px Grid-Basis */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Hero Überschrift oben */
+
+.hero {
+  padding: calc(var(--spacing-1) * 4);
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  color: var(--hero);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* Navigation zwischen den Schritten */
+
+.step-navigation {
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--spacing-1) * 2);
+  padding: calc(var(--spacing-1) * 2);
+}
+
+.step-nav-button {
+  border: none;
+  padding: calc(var(--spacing-1) * 2) calc(var(--spacing-1) * 3);
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.step-nav-button.active {
+  background-color: var(--hero);
+}
+
+.step-nav-button:active {
+  transform: scale(0.97);
+}
+
+/* Hauptinhalt */
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: calc(var(--spacing-1) * 4) calc(var(--spacing-1) * 2);
+}
+
+.step {
+  display: none;
+  width: 100%;
+  max-width: 600px; /* mittig, damit die Buttons "weniger als ein Drittel vom Screen" wirken */
+}
+
+.step-active {
+  display: block;
+}
+
+/* Info-Liste */
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-1) * 3); /* 12px */
+}
+
+/* Einzelner Info-Block (Button + Checkbox rechts) */
+
+.info-item {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: calc(var(--spacing-1) * 2); /* 8px */
+}
+
+/* Info-Button (links) */
+
+.info-button {
+  flex: 0 0 70%;               /* etwas weniger als ein Drittel der gesamten Screenbreite wirkt so realistischer */
+  max-width: 360px;
+  border: none;
+  padding: calc(var(--spacing-1) * 3);
+  border-radius: 9999px;       /* pill-form default */
+  background-color: var(--text);
+  color: var(--text-dark);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-radius 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+
+.info-button:active {
+  transform: scale(0.98);
+}
+
+.info-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* der lange Text ist standardmäßig "eingeklappt" */
+
+.info-content {
+  margin-top: calc(var(--spacing-1) * 2);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.25s ease,
+    opacity 0.2s ease;
+}
+
+/* Zustand: Button "geöffnet" */
+
+.info-button.expanded {
+  border-radius: 12px;         /* 12px Eckenrundung wenn pressed */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.info-button.expanded .info-content {
+  max-height: 300px;           /* genug Platz für normalen Text */
+  opacity: 1;
+}
+
+/* Checkbox rechts (Bestätigungsfeld) */
+
+.confirm-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 40px;
+  cursor: pointer;
+}
+
+.confirm-checkbox input {
+  display: none;
+}
+
+.checkbox-visual {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 2px solid #ffffff;
+  background-color: transparent;
+  position: relative;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* grüner Haken */
+
+.checkbox-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform: scale(0);
+  transform-origin: center;
+  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  width: 10px;
+  height: 14px;
+  margin-left: 5px;
+  margin-top: 1px;
+  rotate: 40deg;
+  transition: transform 0.15s ease-out;
+}
+
+/* Wenn angehakt, grünes Feld + Haken sichtbar */
+
+.confirm-checkbox input:checked + .checkbox-visual {
+  background-color: #1bb34a;
+  border-color: #1bb34a;
+}
+
+.confirm-checkbox input:checked + .checkbox-visual::after {
+  transform: scale(1);
+}
+
+/* Nächster Schritt Button unten */
+
+.next-step-btn {
+  display: none; /* erscheint erst, wenn alle Häkchen gesetzt */
+  margin: calc(var(--spacing-1) * 6) auto 0;
+  padding: calc(var(--spacing-1) * 3) calc(var(--spacing-1) * 8);
+  border-radius: 9999px;
+  border: none;
+  background-color: var(--black); /* schwarz */
+  color: #ffffff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: center;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.next-step-btn.visible {
+  display: block;
+}
+
+.next-step-btn:active {
+  transform: scale(0.97);
+}
+
+/* bisschen Abstand nach unten für Mobile */
+
+@media (max-width: 480px) {
+  main {
+    padding-bottom: calc(var(--spacing-1) * 8);
+  }
+
+  .info-item {
+    align-items: flex-start;
+  }
+
+  .info-button {
+    flex: 1 1 auto;
+  }
+}
